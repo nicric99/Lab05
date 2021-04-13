@@ -1,5 +1,50 @@
 package Model;
 
-public class Model {
+import java.util.HashSet;
+import java.util.Set;
 
+import DAO.AnagrammaDAO;
+
+public class Model {
+	private AnagrammaDAO AnagrammaDAO;
+	private HashSet<String> anagrammi= new HashSet<String>();
+	
+	public void Model() {
+		AnagrammaDAO= new AnagrammaDAO();
+	}
+	public Set<String> doAnagramma(String parola){
+		permuta("",parola,0);
+		return this.anagrammi;
+		}
+	
+	private void permuta(String parziale,String lettere,int livello) {
+		if(lettere.length()==0) {//caso terminale
+			// la soluzione parziale diventa quindi una soluzione completa
+			// e quindi lo stampiamo
+			//System.out.println(parziale);
+			// non posso scrivere qua un ritorno parzialeperchè ritornerebbe solo al precedente
+//			 mi serve un luogo per salvare le cose
+			this.anagrammi.add(parziale);
+			// 2 oppure questo controllo lo faccio nel caso terminale, (se parola è corretta la ggiungo) evito di aggiun
+			// gere qualcosa che poi devo cancellare
+		}else {
+//			fai ricorsione
+			// sottoproblema== una lettera di lettere (singolo carattere)
+			for(int pos=0;pos<lettere.length();pos++) {
+				char tentativo= lettere.charAt(pos);
+				// stringa + un char che concatena
+				// backtracking ho sporcato la sol parziale e devo togliere il valore precedente 
+				String nuovaParziale=parziale + tentativo;
+				String nuovaLettere= lettere.substring(0,pos)+lettere.substring(pos+1);// togli carattere pos dalle lettere per tornare alla sol precedente
+				
+				//3 posso controllare se la nuovaParziale è prefisso valido di almeno una parola nel dizionario
+				// aqz, no (car si) ma non è detto che questo metodo si efficiente
+				
+				permuta(nuovaParziale,nuovaLettere,livello+1);
+				// backtracking(ora non serve perchè abbiamo stringhe temporanee)
+				// rimetti aposto parziale e rimetti a posto le lettere
+			}
+		}
+
+}
 }
