@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class FXMLController {
 	private Model model;
@@ -25,6 +26,8 @@ public class FXMLController {
     private TextArea txtCorretti;
 
     @FXML
+    private TextField txtParola;
+    @FXML
     private TextArea txtErrati;
 
     @FXML
@@ -32,7 +35,8 @@ public class FXMLController {
 
     @FXML
     void doAnagramma(ActionEvent event) {
-
+// controllo dell'input lo facciamo dopo
+    	String parola= txtParola.getText();
     }
 
     @FXML
@@ -49,6 +53,7 @@ public class FXMLController {
         assert txtCorretti != null : "fx:id=\"txtCorretti\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtErrati != null : "fx:id=\"txtErrati\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert txtParola != null : "fx:id=\"txtParola\" was not injected: check your FXML file 'Scene.fxml'.";
 
     }
 }

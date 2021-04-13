@@ -22,7 +22,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField promptText="inserisci parola" />
+                  <TextField fx:id="txtParola" promptText="inserisci parola" />
                   <Button fx:id="btnAnagramma" mnemonicParsing="false" onAction="#doAnagramma" text="Calcola Anagrammi" />
                </children>
             </HBox>
