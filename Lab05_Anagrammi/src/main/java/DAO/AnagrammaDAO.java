@@ -12,6 +12,7 @@ import java.util.Map;
 
 public class AnagrammaDAO {
 	public List<String> getParole(){
+
 		//togliere gli accapo e occhio a mettere spazi prima della fine delle virgolette!!!
 		String sql="select * "+
 				"from parola "+
@@ -35,6 +36,8 @@ public class AnagrammaDAO {
 		}
 		return result;
 	}
+	
+	
 	public boolean isCorrect(String anagramma){
 		boolean trovato=false;
 		String sql="select * "+

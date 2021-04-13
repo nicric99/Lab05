@@ -1,6 +1,10 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import DAO.AnagrammaDAO;
@@ -45,6 +49,25 @@ public class Model {
 				// rimetti aposto parziale e rimetti a posto le lettere
 			}
 		}
+	}
+	public boolean prova(String s) {
+	return AnagrammaDAO.isCorrect(s);
+	}
+		
+		public Map<String,Boolean> corretto(Set<String> a){
+//			List<Boolean> giusto= new ArrayList<Boolean>();
+			Map<String,Boolean> mappa=new HashMap<String,Boolean>();
+			for(String s:a) {
+			if(AnagrammaDAO.isCorrect(s)) {
+					mappa.put(s,true);
+				}
+				else {
+					mappa.put(s, false);
+				}
+			
+		}
+			return mappa;
 
+		}
 }
-}
+
