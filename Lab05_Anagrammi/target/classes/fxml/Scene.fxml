@@ -30,7 +30,7 @@
             <TextArea fx:id="txtCorretti" prefHeight="200.0" prefWidth="200.0" />
             <Label text="Anagrammi Errati" />
             <TextArea fx:id="txtErrati" prefHeight="200.0" prefWidth="200.0" />
-            <Button fx:id="btnReset" mnemonicParsing="false" onAction="#doReset" text="Button" />
+            <Button fx:id="btnReset" mnemonicParsing="false" onAction="#doReset" text="Clear" />
          </children>
       </VBox>
    </left>

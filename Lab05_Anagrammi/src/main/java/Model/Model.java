@@ -10,16 +10,20 @@ import java.util.Set;
 import DAO.AnagrammaDAO;
 
 public class Model {
-	private AnagrammaDAO AnagrammaDAO;
+	// attenzione all'inizializzzione per i anagrammadao, meglio farla fuori!!!
+	private AnagrammaDAO AnagrammaDAO= new AnagrammaDAO();
 	private HashSet<String> anagrammi= new HashSet<String>();
 	
-	public void Model() {
+	/*public void Model() {
 		AnagrammaDAO= new AnagrammaDAO();
-	}
+	}*/
 	public Set<String> doAnagramma(String parola){
 		permuta("",parola,0);
 		return this.anagrammi;
 		}
+	public void clearAnagrammi() {
+		this.anagrammi.clear();
+	}
 	
 	private void permuta(String parziale,String lettere,int livello) {
 		if(lettere.length()==0) {//caso terminale

@@ -1,7 +1,10 @@
 package it.polito.tdp.anagrammi;
 
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import Model.Model;
 import javafx.event.ActionEvent;
@@ -36,11 +39,40 @@ public class FXMLController {
     @FXML
     void doAnagramma(ActionEvent event) {
 // controllo dell'input lo facciamo dopo
-    	String parola= txtParola.getText();
+    	String parola= null;
+    	try {
+    		parola= txtParola.getText();
+    		if(parola.isEmpty()) {
+    			txtCorretti.setText("Attenzione non è stato inserito niente");
+    			return;
+    		}
+    		if(parola.length()>8) {
+    			txtCorretti.appendText("La parola è molto lunga ritentare con una più corta");
+    			return;
+    		}
+    	}catch(NullPointerException npe) {
+    		txtCorretti.setText(" NUll pointer exception");
+    		return;
+    	}
+    	Set<String> soluzioni;
+    	soluzioni=model.doAnagramma(parola);
+    	Map<String,Boolean> mappaSoluzioni;
+    	mappaSoluzioni=model.corretto(soluzioni);
+    	for(String s: mappaSoluzioni.keySet()) {
+    		if(mappaSoluzioni.get(s)) {
+    			txtCorretti.appendText(s+" "+mappaSoluzioni.get(s)+" \n");
+    		}else {
+    			txtErrati.appendText(s+" "+mappaSoluzioni.get(s)+" \n");
+    			}
+    	}
     }
 
     @FXML
     void doReset(ActionEvent event) {
+    	txtParola.clear();
+    	txtCorretti.clear();
+    	txtErrati.clear();
+    	model.clearAnagrammi();
 
     }
     public void setModel(Model model) {
